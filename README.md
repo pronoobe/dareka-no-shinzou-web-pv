@@ -18,6 +18,17 @@
 
 > 更清晰的 12 秒预览：[`preview/gsap_chorus.mp4`](preview/gsap_chorus.mp4)（无声）
 
+**副歌片段预览**（「愛をください」，B 版 / Remotion + React）：
+
+![preview](preview/remotion_chorus.gif)
+
+> 更清晰的 12 秒预览：[`preview/remotion_chorus.mp4`](preview/remotion_chorus.mp4)（无声）
+
+**两版同段落对比**（上 = A / GSAP + PixiJS，下 = B / Remotion + React）：
+
+[`preview/compare_chorus.mp4`](preview/compare_chorus.mp4)（无声 · 60fps）
+
+
 > 仓库内**不包含原曲音频**，两份网页均为"影像版"，播放时只有画面。
 
 ## 🌐 在线直接看
