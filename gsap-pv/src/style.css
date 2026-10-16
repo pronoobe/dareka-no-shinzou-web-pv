@@ -1,0 +1,280 @@
+:root {
+  --bone: #e9eef8;
+  --aqua: #5fd3e8;
+  --indigo: #1c2a63;
+  --crimson: #ff2b46;
+  --gold: #f0b46a;
+  --bg: #05070f;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+  font-kerning: normal;
+}
+
+#viewport {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+}
+
+#stage {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  background: var(--bg);
+  overflow: hidden;
+  transform-origin: center center;
+  flex: 0 0 auto;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+#bgLayer { background: radial-gradient(120% 90% at 50% 42%, #101a3a 0%, #070b18 45%, #03050b 100%); }
+
+/* ---- generated background plates ---- */
+#plateLayer { }
+.plate {
+  position: absolute;
+  inset: -48px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  will-change: transform, opacity;
+  filter: brightness(.66) saturate(.94) contrast(1.05);
+  transform-origin: 0 0;
+}
+#plateShade {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(125% 88% at 50% 42%, rgba(3,6,14,.06) 0%, rgba(3,6,14,.42) 58%, rgba(3,6,14,.86) 100%),
+    linear-gradient(180deg, rgba(3,6,14,.55) 0%, rgba(3,6,14,0) 26%, rgba(3,6,14,0) 62%, rgba(3,6,14,.75) 100%);
+}
+
+/* ---- ai plates drawn in front of the line art (crowd) ---- */
+#plateOver { }
+#plateOver .plate { mix-blend-mode: normal; }
+#pixiLayer canvas { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+
+#artSvg { width: 100%; height: 100%; display: block; }
+/* the line-art layer carries the scene camera, so it needs its own origin */
+#artLayer { will-change: transform; transform-origin: 50% 62%; }
+
+/* ---- orbiting lyric rings ---- */
+#ringLayer { }
+.ring { position: absolute; inset: 0; opacity: 0; will-change: opacity; }
+.ring span {
+  position: absolute;
+  left: 0; top: 0;
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 600;
+  white-space: nowrap;
+  will-change: transform, opacity;
+  text-shadow: 0 0 18px rgba(3,6,14,.95), 0 0 34px rgba(3,6,14,.8);
+}
+.ring .tick {
+  position: absolute; left: 0; top: 0;
+  width: 2px; height: 14px;
+  background: linear-gradient(180deg, rgba(190,225,255,.75), rgba(190,225,255,0));
+  transform-origin: 50% 0%;
+}
+.ring .eye {
+  position: absolute; left: 0; top: 0;
+  width: 9px; height: 6px; border-radius: 50%;
+  background: radial-gradient(closest-side, #ff5566, rgba(255,20,50,.15));
+  box-shadow: 0 0 14px rgba(255,40,70,.85);
+}
+.ring .mote {
+  position: absolute; left: 0; top: 0;
+  width: 5px; height: 5px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255,236,205,.95), rgba(255,190,120,0));
+}
+.ring .hand {
+  position: absolute; left: 0; top: 0;
+  width: 2px; height: 150px;
+  background: linear-gradient(180deg, rgba(190,225,255,.9), rgba(190,225,255,0));
+  transform-origin: 50% 0%;
+  opacity: 0;
+}
+
+/* ---- lyric text ---- */
+#textLayer .line {
+  position: absolute;
+  left: 0;
+  width: 1920px;
+  text-align: center;
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 700;
+  color: var(--bone);
+  white-space: pre;
+  transform-origin: 50% 50%;
+  text-shadow: 0 0 22px rgba(3,6,14,.98), 0 0 40px rgba(3,6,14,.9), 0 0 70px rgba(3,6,14,.75), 0 3px 14px rgba(0,0,0,.85);
+}
+#textLayer .line.verse { top: 372px; font-size: 82px; letter-spacing: 0.06em; }
+#textLayer .line.hook {
+  top: 330px;
+  font-size: 148px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #fff;
+}
+#textLayer .line.small { top: 396px; font-size: 70px; letter-spacing: 0.08em; }
+#textLayer .line .ch { display: inline-block; will-change: transform, opacity; }
+
+#textLayer .line .glowline {
+  position: absolute;
+  left: 0; bottom: -24px; height: 1px; width: 100%;
+  background: linear-gradient(90deg, transparent, rgba(95,211,232,.6), transparent);
+  transform-origin: 50% 50%;
+}
+#textLayer .line .band {
+  position: absolute;
+  left: 0; top: 50%; height: 10px; width: 100%;
+  background: linear-gradient(90deg, transparent, rgba(140,220,255,.28) 30%, rgba(255,255,255,.75) 50%, rgba(140,220,255,.28) 70%, transparent);
+  transform: translateY(-50%) translateX(-110%) scaleX(.8);
+  opacity: 0;
+  filter: blur(3px);
+}
+#textLayer .line.vert { writing-mode: vertical-rl; text-orientation: upright; white-space: nowrap; height: 900px; }
+#textLayer .line.vert .glowline { display: none; }
+
+/* ---- subtitles ---- */
+.sub-line .sub-txt { display: inline-block; }
+.sub-line .sub-bar {
+  display: block;
+  height: 1px;
+  width: 0%;
+  margin: 10px auto 0;
+  background: linear-gradient(90deg, rgba(95,211,232,0), rgba(95,211,232,.75), rgba(95,211,232,0));
+}
+
+/* ---- chapter word (vertical, left edge) ---- */
+#chapterLayer { }
+#chapterWord {
+  position: absolute;
+  left: 84px;
+  top: 240px;
+  writing-mode: vertical-rl;
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 400;
+  font-size: 40px;
+  letter-spacing: 0.32em;
+  color: rgba(233,238,248,.5);
+}
+
+/* ---- heartbeat trace ---- */
+#ekg { position: absolute; left: 0; top: 776px; width: 1920px; height: 200px; }
+
+/* ---- subtitle ---- */
+#subLayer { }
+#subInner {
+  position: absolute;
+  left: 0; top: 968px; width: 1920px; height: 90px;
+  text-align: center;
+}
+#subInner:before {
+  content: '';
+  position: absolute;
+  left: 50%; top: -48px;
+  width: 1000px; height: 150px;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(3,6,14,.9), rgba(3,6,14,0));
+}
+.sub-line {
+  position: absolute;
+  left: 0; top: 0; width: 1920px;
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 300;
+  font-size: 36px;
+  letter-spacing: 0.08em;
+  color: #d6dff2;
+  text-shadow: 0 0 26px rgba(4,8,20,.95), 0 2px 12px rgba(0,0,0,.95);
+  opacity: 0;
+}
+
+/* ---- fx ---- */
+#vignette {
+  position: absolute; inset: 0;
+  background: radial-gradient(115% 80% at 50% 48%, rgba(0,0,0,0) 42%, rgba(0,0,0,.55) 78%, rgba(0,0,0,.88) 100%);
+}
+#scan {
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(180deg, rgba(255,255,255,.024) 0 1px, rgba(0,0,0,0) 1px 3px);
+  opacity: .5;
+}
+#grain {
+  position: absolute; inset: -64px;
+  opacity: .055;
+  mix-blend-mode: screen;
+}
+#tint { position: absolute; inset: 0; background: transparent; mix-blend-mode: screen; opacity: 1; }
+#flash { position: absolute; inset: 0; background: #fff; opacity: 0; }
+#strobe { position: absolute; inset: 0; background: #fff; opacity: 0; mix-blend-mode: screen; }
+#sweep {
+  position: absolute;
+  top: -10%; height: 120%; width: 260px;
+  left: -500px;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(210,240,255,.85) 45%, rgba(255,255,255,.95) 50%, rgba(210,240,255,.85) 55%, rgba(255,255,255,0));
+  mix-blend-mode: screen;
+  opacity: 0;
+  filter: blur(1px);
+  transform: skewX(-11deg);
+}
+
+/* ---- title card ---- */
+#titleLayer .ttl {
+  position: absolute;
+  writing-mode: vertical-rl;
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 600;
+  color: var(--bone);
+  letter-spacing: 0.22em;
+  opacity: 0;
+  text-shadow: 0 0 32px rgba(10,20,40,.9);
+}
+#titleLayer .ttl-h { writing-mode: horizontal-tb; }
+#titleLayer .ttl .ch { display: inline-block; }
+#titleLayer .credit {
+  position: absolute;
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: 0.42em;
+  color: rgba(233,238,248,.72);
+  font-size: 26px;
+  text-transform: uppercase;
+  opacity: 0;
+}
+#titleLayer .credit-c { text-transform: none; }
+
+/* ---- play hint ---- */
+#hint {
+  position: fixed;
+  left: 50%; bottom: 32px;
+  transform: translateX(-50%);
+  padding: 12px 26px;
+  border: 1px solid rgba(233,238,248,.30);
+  border-radius: 999px;
+  background: rgba(4,8,18,.55);
+  color: rgba(233,238,248,.88);
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 15px;
+  letter-spacing: .06em;
+  backdrop-filter: blur(6px);
+  transition: opacity .5s ease;
+  z-index: 50;
+}
+#hint b { color: #7fd8ee; margin-right: 6px; }
+#hint.gone { opacity: 0; pointer-events: none; }

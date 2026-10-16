@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🫀</text></svg>">
+<title>だれかの心臓になれたなら / 若能成为谁的心脏 — Web PV (GSAP + PixiJS)</title>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+<div id="viewport">
+  <div id="stage">
+    <!-- background wash -->
+    <div class="layer" id="bgLayer"></div>
+
+    <!-- generated background plates -->
+    <div class="layer" id="plateLayer"><div id="plateShade"></div></div>
+
+    <!-- scene line art (svg) -->
+    <div class="layer" id="artLayer">
+      <svg id="artSvg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice"></svg>
+    </div>
+
+    <!-- foreground plate (crowd) : in front of the line art -->
+    <div class="layer" id="plateOver"></div>
+
+    <!-- webgl / pixi : rain, particles, glow, shockwaves -->
+    <div class="layer" id="pixiLayer"></div>
+
+    <!-- orbiting lyric rings + clock face -->
+    <div class="layer" id="ringLayer"></div>
+
+    <!-- japanese lyric text -->
+    <div class="layer" id="textLayer"></div>
+
+    <!-- chapter word, left edge -->
+    <div class="layer" id="chapterLayer"><div id="chapterWord"></div></div>
+
+    <!-- heartbeat trace -->
+    <div class="layer" id="hudLayer">
+      <canvas id="ekg" width="1920" height="200"></canvas>
+    </div>
+
+    <!-- chinese subtitle -->
+    <div class="layer" id="subLayer">
+      <div id="subInner"><span id="subCn"></span></div>
+    </div>
+
+    <!-- post effects -->
+    <div class="layer" id="fxLayer">
+      <div id="vignette"></div>
+      <div id="grain"></div>
+      <div id="tint"></div>
+      <div id="sweep"></div>
+      <div id="flash"></div>
+      <div id="strobe"></div>
+      <div id="scan"></div>
+    </div>
+
+    <div class="layer" id="titleLayer"></div>
+  </div>
+  
+</div>
+
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/CustomEase.min.js"></script>
+<script src="assets/vendor/SplitText.min.js"></script>
+<script src="assets/vendor/DrawSVGPlugin.min.js"></script>
+<script src="assets/vendor/pixi.min.js"></script>
+<script src="src/util.js"></script>
+<script src="data/pv.js"></script>
+<script src="src/stage.js"></script>
+<script src="src/art.js"></script>
+<script src="src/lyrics.js"></script>
+<script src="src/director.js"></script>
+<script src="src/main.js"></script>
+</body>
+</html>
