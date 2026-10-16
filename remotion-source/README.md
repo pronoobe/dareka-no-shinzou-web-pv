@@ -9,9 +9,9 @@ npx remotion render src/index.ts PV out/pv.mp4 --concurrency=5 --crf=17
 npx remotion still src/index.ts PV out/a.png --frame 3420
 ```
 
-需要的素材（`public/` 目录）：`audio.mp3`（自行准备原曲，仓库不提供）、`img/*.png`（AI 画面）、
-`fonts/*.woff2` + `fonts.css`、`art.svg`（线稿，由 GSAP 版导出）、`pv.json`（歌词时间轴）。
-这些文件都能从本仓库的 `../gsap-pv/` 与 `../remotion-pv/` 里取到（图片为 jpg 版即可，代码里会自动把 `.png` 映射成 `.jpg`）。
+需要的素材（`public/` 目录）：`audio.mp3`（自行准备原曲，仓库不提供）、`img/*.jpg`（AI 画面，可直接复制 `../gsap-pv/assets/img/`）、
+`fonts/*.woff2` + `fonts.css`（复制 `../gsap-pv/assets/fonts/`）、`art.svg`（**本目录已附带**，是从 GSAP 版导出的线稿层）。
+代码里会自动把 `.png` 映射成 `.jpg`，所以图片用压缩版即可。歌词时间轴已内置在 `pv-data.ts` 里，无需另外准备。
 
 源码文件：
 - `motion.ts` — 拍点时钟、心脏门控、震颤、相机解算、段落/排版/场景窗口表
