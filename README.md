@@ -20,6 +20,13 @@
 
 > 仓库内**不包含原曲音频**，两份网页均为"影像版"，播放时只有画面。
 
+## 🌐 在线直接看
+
+**https://pronoobe.github.io/dareka-no-shinzou-web-pv/**
+
+打开上面的链接即可试玩两版（或直接进：A 版 [`/gsap-pv/`](https://pronoobe.github.io/dareka-no-shinzou-web-pv/gsap-pv/) · B 版 [`/remotion-pv/`](https://pronoobe.github.io/dareka-no-shinzou-web-pv/remotion-pv/)）。均为无声影像版。
+
+
 ---
 
 ## 一、原曲

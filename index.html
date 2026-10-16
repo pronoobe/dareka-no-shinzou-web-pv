@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>だれかの心臓になれたなら ／ 若能成为谁的心脏 — Web PV</title>
+<style>
+  :root{ --aqua:#5fd3e8; --crimson:#ff2b46; --bone:#e9eef8; }
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;background:radial-gradient(120% 90% at 50% 30%,#101a3a 0%,#070b18 45%,#03050b 100%);
+       color:var(--bone);font-family:"Noto Serif SC",system-ui,sans-serif;display:flex;flex-direction:column;
+       align-items:center;padding:48px 22px 64px;gap:34px}
+  h1{font-size:clamp(26px,4.6vw,52px);margin:0;font-weight:600;letter-spacing:.06em;text-align:center}
+  h1 small{display:block;font-size:.5em;font-weight:300;color:#a9c0e4;letter-spacing:.22em;margin-top:14px}
+  .bar{width:132px;height:6px;background:var(--crimson);border-radius:3px;box-shadow:0 0 26px rgba(255,43,70,.7)}
+  .covers{display:flex;gap:26px;flex-wrap:wrap;justify-content:center}
+  .covers img{width:min(560px,44vw);min-width:290px;border-radius:14px;border:1px solid rgba(220,232,255,.16);
+       box-shadow:0 20px 60px rgba(0,0,0,.6)}
+  .cards{display:flex;gap:26px;flex-wrap:wrap;justify-content:center;width:100%;max-width:1200px}
+  a.card{flex:1 1 380px;max-width:560px;text-decoration:none;color:inherit;padding:26px 28px;border-radius:16px;
+       background:rgba(10,18,36,.72);border:1px solid rgba(220,232,255,.16);transition:.25s;display:block}
+  a.card:hover{transform:translateY(-4px);border-color:var(--aqua);box-shadow:0 18px 48px rgba(95,211,232,.18)}
+  .card b{font-size:23px;letter-spacing:.04em}
+  .card .tag{display:inline-block;margin-top:10px;padding:5px 14px;border:1.5px solid var(--aqua);border-radius:999px;
+       color:var(--aqua);font-size:13px;letter-spacing:.12em}
+  .card p{margin:14px 0 0;color:#b9cbe8;font-size:15px;line-height:1.75}
+  footer{color:#7f96bd;font-size:13px;text-align:center;line-height:2;letter-spacing:.04em}
+  footer a{color:#9fb6dd}
+</style>
+</head>
+<body>
+  <div class="bar"></div>
+  <h1>だれかの心臓になれたなら<small>若能成为谁的心脏　·　WEB PV</small></h1>
+  <div class="covers">
+    <img src="covers/cover_gsap.jpg" alt="GSAP + PixiJS cover">
+    <img src="covers/cover_remotion.jpg" alt="Remotion + React cover">
+  </div>
+  <div class="cards">
+    <a class="card" href="gsap-pv/index.html">
+      <b>A 版 · GSAP + PixiJS</b><div class="tag">WEBGL · SVG · CANVAS</div>
+      <p>三层景深雨丝、WebGL 粒子与光斑、手绘线稿、Canvas 心电图；GSAP 时间轴逐帧确定性渲染。
+         自动播放，空格键暂停。</p>
+    </a>
+    <a class="card" href="remotion-pv/index.html">
+      <b>B 版 · Remotion + React</b><div class="tag">SPRING · MOTION BLUR · TRAIL</div>
+      <p>全部动效改用物理弹簧，镜头带 150° 快门角动态模糊，副歌文字拖尾，线稿层与背景共用同一套相机解算。
+         自动播放并循环。</p>
+    </a>
+  </div>
+  <footer>
+    原曲：ユリイ・カノン「だれかの心臓になれたなら」feat. GUMI<br>
+    本页为粉丝向非商业视觉演绎，不含音频；音乐与角色的权利归原作者与权利方所有。<br>
+    <a href="https://github.com/pronoobe/dareka-no-shinzou-web-pv">GitHub 仓库</a>
+  </footer>
+</body>
+</html>
