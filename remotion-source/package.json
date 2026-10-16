@@ -1,0 +1,25 @@
+{
+  "name": "pvrem",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts PV out/pv_remotion.mp4",
+    "still": "remotion still src/index.ts PV out/still.png"
+  },
+  "dependencies": {
+    "@remotion/animation-utils": "^4.0.535",
+    "@remotion/cli": "^4.0.535",
+    "@remotion/layout-utils": "^4.0.535",
+    "@remotion/motion-blur": "^4.0.535",
+    "@remotion/noise": "^4.0.535",
+    "@remotion/paths": "^4.0.535",
+    "@remotion/shapes": "^4.0.535",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "remotion": "^4.0.535",
+    "typescript": "^7.0.2"
+  }
+}
