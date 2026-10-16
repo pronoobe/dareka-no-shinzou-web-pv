@@ -129,8 +129,8 @@ export const Neon: React.FC<{ t: number }> = ({ t }) => (
               const cy = vert ? 14 + size / 2 + k * size : n.h / 2;
               return (
                 <text key={k} x={cx} y={cy} textAnchor="middle" dominantBaseline="central"
-                  fontFamily="'Shippori Mincho', serif" fontWeight={600} fontSize={size * 0.92}
-                  fill="#fff" opacity={0.92} style={{ filter: `drop-shadow(0 0 10px ${n.col})` }}>{c}</text>
+                  fontFamily="Shippori Mincho, serif" fontWeight={600} fontSize={size * 0.92}
+                  fill="#ffffff" stroke={n.col} strokeWidth={0.6} opacity={0.95}>{c}</text>
               );
             })}
           </g>
