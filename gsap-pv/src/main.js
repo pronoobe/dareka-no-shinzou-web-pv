@@ -127,7 +127,7 @@
     if (!new URLSearchParams(location.search).has('export')) {
       const hint = document.createElement('div');
       hint.id = 'hint';
-      hint.innerHTML = '<b>▶</b> クリック / スペース で再生（映像のみ） &nbsp;·&nbsp; visuals only';
+      hint.innerHTML = '▶ 自動再生中 &nbsp;·&nbsp; 空格 / クリック で一時停止 &nbsp;·&nbsp; auto-playing';
       document.body.appendChild(hint);
       const audio = document.getElementById('audio');
       let started = false;
@@ -141,7 +141,7 @@
       document.addEventListener('keydown', (e) => {
         if (e.code === 'Space' || e.key === ' ') { e.preventDefault(); if (!started) go(); else PV.toggle(); }
       });
-      PV.onLoop = () => { started = false; hint.classList.remove('gone'); };
+      setTimeout(go, 250);   // no audio : start straight away
     }
   };
 
