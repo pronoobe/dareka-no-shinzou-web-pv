@@ -12,6 +12,12 @@
 ![cover](covers/cover_gsap.jpg)
 ![cover](covers/cover_remotion.jpg)
 
+**副歌片段预览**（「愛をください」，A 版 / GSAP + PixiJS）：
+
+![preview](preview/gsap_chorus.gif)
+
+> 更清晰的 12 秒预览：[`preview/gsap_chorus.mp4`](preview/gsap_chorus.mp4)（无声）
+
 > 仓库内**不包含原曲音频**，两份网页均为"影像版"，播放时只有画面。
 
 ---
