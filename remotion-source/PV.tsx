@@ -17,6 +17,7 @@ import {
   GlassRain, Poles, Neon, HeartAnatomy, Veins, Ripples, Ivdrip, Birds, Petals, SoulThread, ArtDefs,
 } from './ArtExtra';
 import { MOODS, ART_TINT } from './moods';
+import { Titles } from './Titles';
 
 const FontGate: React.FC = () => {
   const [handle] = useState(() => delayRender('fonts'));
@@ -53,15 +54,8 @@ export const PV: React.FC<{ withAudio?: boolean }> = ({ withAudio = true }) => {
   const couple = artCouple(t, frame, ho);
   const artTint = ART_TINT[mood.id] || 'none';
 
-  /* line-art density follows the section */
-  const world = clamp01(
-    Math.max(
-      mood.id === 'A1' || mood.id === 'inter1' || mood.id === 'A2' ? 1 : 0,
-      mood.id === 'B1' || mood.id === 'C1' || mood.id === 'D1' ? 0.6 : 0,
-      mood.id === 'E' ? 0.7 : 0,
-      mood.id === 'intro' ? 0.35 : 0,
-    ),
-  );
+  /* the utility poles / wires belong to the opening street only */
+  const world = Math.min(clamp01((t - 0.4) / 1.6), clamp01((28.2 - t) / 1.6));
   const glass = mood.id === 'D1' || mood.id === 'inter2' ? 0.9
     : mood.id === 'A1' || mood.id === 'inter1' || mood.id === 'A2' ? 0.75
       : mood.id === 'outro' ? 0.5 : 0.3;
@@ -137,6 +131,7 @@ export const PV: React.FC<{ withAudio?: boolean }> = ({ withAudio = true }) => {
         <Rings t={t} />
         <Lyrics t={t} />
         <Ekg t={t} />
+        <Titles t={t} />
       </div>
 
       <Fx t={t} tint={mood.tint} tintA={mood.tintA} />

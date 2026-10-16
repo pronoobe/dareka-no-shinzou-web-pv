@@ -85,13 +85,6 @@ export const Poles: React.FC<{ t: number; amount: number }> = ({ t, amount }) =>
         ))}
         <path d={wire(140, 344, 1830, 306, 210, 4, t)} opacity={0.7} />
       </g>
-      {/* two birds sitting on the wire */}
-      {[560, 640].map((bx, i) => (
-        <g key={i} transform={`translate(${bx},${646 + Math.sin(t * 0.9 + i) * 3})`} stroke="#b9cbe8" fill="none" strokeWidth="1.6" opacity={0.8}>
-          <path d="M0 0 C-6 -8 -2 -14 4 -14 C10 -14 14 -8 8 0" />
-          <path d="M2 -2 L0 6 M6 -2 L8 6" />
-        </g>
-      ))}
     </svg>
   );
 };
