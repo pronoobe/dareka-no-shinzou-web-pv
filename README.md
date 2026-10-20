@@ -1,16 +1,18 @@
 # だれかの心臓になれたなら ／ 若能成为谁的心脏 — Web PV
 
-一个用**网页技术**做的 PV（Promotional Video）：把 ユリイ・カノン 的 **「だれかの心臓になれたなら」feat. GUMI** 做成两支可以实时播放的网页动画，并各自导出 1920×1080 / 60fps 的视频。
+一个用**网页技术**做的 PV（Promotional Video）：把 ユリイ・カノン 的 **「だれかの心臓になれたなら」feat. GUMI** 做成三支可以实时播放的网页动画，A/B 版各自导出 1920×1080 / 60fps 的视频；C 版是带音频的完整实时 3D 网页版。
 
-本仓库包含**两套互相独立的实现**，用不同技术路线做同一首歌，可以直接对比观感：
+本仓库包含**三套互相独立的实现**，用不同技术路线做同一首歌，可以直接对比观感：
 
 | 版本 | 技术栈 | 目录 | 特点 |
 |---|---|---|---|
 | **A. GSAP 版** | GSAP 时间轴 + PixiJS(WebGL) + Canvas2D + SVG | [`gsap-pv/`](gsap-pv/) | 三层景深雨丝、WebGL 粒子与光斑、SVG 手绘线稿、Canvas 心电图；逐帧截图导出 |
 | **B. Remotion 版** | Remotion 4 + React + TypeScript | [`remotion-pv/`](remotion-pv/) | 全部动效改用物理弹簧、镜头动态模糊、文字拖尾、路径生长/流动、图层与背景共用同一套相机 |
+| **C. Remotion Player × Three.js 版** | `@remotion/player` + Three.js + GLSL + React | [`remotion-player-pv/`](remotion-player-pv/) | 带原曲音轨的**实时 2.5D / 3D 网页版**：真实透视相机、程序化线框、11 个分镜、逐章跳转；浏览器内实时渲染，不是预渲染视频 |
 
 ![cover](covers/cover_gsap.jpg)
 ![cover](covers/cover_remotion.jpg)
+![cover](covers/cover_player.jpg)
 
 **副歌片段预览**（「愛をください」，A 版 / GSAP + PixiJS）：
 
@@ -29,13 +31,17 @@
 [`preview/compare_chorus.mp4`](preview/compare_chorus.mp4)（无声 · 60fps）
 
 
-> 仓库内**不包含原曲音频**，两份网页均为"影像版"，播放时只有画面。
+> A/B 两版是**无音频影像版**。C 版是**带原曲音轨的实时演示版**，仅用于非商业同人展示；音乐与歌词权利归原作者与权利方所有，若权利方要求下架会立即移除。
 
 ## 🌐 在线直接看
 
 **https://pronoobe.github.io/dareka-no-shinzou-web-pv/**
 
-打开上面的链接即可试玩两版（或直接进：A 版 [`/gsap-pv/`](https://pronoobe.github.io/dareka-no-shinzou-web-pv/gsap-pv/) · B 版 [`/remotion-pv/`](https://pronoobe.github.io/dareka-no-shinzou-web-pv/remotion-pv/)）。均为无声影像版。
+打开上面的链接即可试玩三版：
+
+- A 版：[`/gsap-pv/`](https://pronoobe.github.io/dareka-no-shinzou-web-pv/gsap-pv/)
+- B 版：[`/remotion-pv/`](https://pronoobe.github.io/dareka-no-shinzou-web-pv/remotion-pv/)
+- C 版（实时 3D + 音频）：[`/remotion-player-pv/`](https://pronoobe.github.io/dareka-no-shinzou-web-pv/remotion-player-pv/)
 
 
 ---
@@ -51,7 +57,7 @@
 
 ## 二、怎么运行
 
-两份都是纯前端、无需构建即可打开（需要一个本地静态服务器，因为有字体与图片的跨源加载）：
+A/B 两版都是纯前端、无需构建即可打开（需要一个本地静态服务器，因为有字体与图片的跨源加载）：
 
 ```bash
 # 在仓库根目录
@@ -59,30 +65,37 @@ python -m http.server 8000
 # 然后打开
 # A 版： http://127.0.0.1:8000/gsap-pv/index.html
 # B 版： http://127.0.0.1:8000/remotion-pv/index.html
+# C 版： http://127.0.0.1:8000/remotion-player-pv/index.html
 ```
 
 - **A 版**：打开后自动播放（无音频，按墙钟时间推进），空格键暂停/继续。
 - **B 版**：基于 `@remotion/player`，自动播放并循环；底部按钮可暂停/继续，也可用播放器自带控件。
+- **C 版**：带音频的实时 Three.js 版本；打开后点击 PLAY，章节栏可跳转。资源路径按当前目录自动计算，在 GitHub Pages 子路径下也能运行。
 
 ## 三、目录结构
 
 ```
 .
 ├── README.md
-├── covers/                     # 两版封面（16:9，B 站风格）
+├── covers/                     # 三版封面（16:9，B 站风格）
 ├── gsap-pv/                    # A 版：GSAP + PixiJS
 │   ├── index.html
 │   ├── src/                    # util / stage / art / lyrics / director / main
 │   ├── data/pv.json            # 段落、逐行歌词、逐字时间戳、拍点
 │   └── assets/                 # vendor(gsap,pixi) / fonts(子集化 woff2) / img(14 张 AI 画面)
-└── remotion-pv/                # B 版：Remotion + React
-    ├── index.html              # 挂载 @remotion/player
-    ├── player.js               # 打包后的播放器
-    ├── fonts/                  # 同上字体
-    └── img/                    # 压缩后的同一批画面
+├── remotion-pv/                # B 版：Remotion 导出 + React
+│   ├── index.html              # 挂载 @remotion/player
+│   ├── player.js               # 打包后的播放器
+│   ├── fonts/                  # 同上字体
+│   └── img/                    # 压缩后的同一批画面
+└── remotion-player-pv/         # C 版：实时 Remotion Player + Three.js（带音频）
+    ├── index.html              # 封面 / 章节导航 / 播放器 UI
+    ├── app.js                  # Remotion Player + Three.js 构建产物
+    ├── styles.css
+    └── assets/                 # img（9 张新原画）/ audio（原曲）/ poster
 ```
 
-## 四、两支版本共用的制作基础
+## 四、A/B 两版共用的制作基础
 
 **1. 画面素材（AI 绘制）**
 
@@ -112,14 +125,27 @@ python -m http.server 8000
 - **图层咬合**：线稿层以背景层 42% 的推拉、34% 的平移跟随**同一套相机解算**，两层像一台摄影机拍出来的；并按段落给线稿做色彩 grade，使其落在画面光线里。
 - **补足的线稿内容**：电线杆与下垂电线（含栖鸟）、霓虹灯牌（心臓／愛を／雨／こんな世界／夢／また会える）、冠状血管＋血流脉冲、玻璃雨、地面积水涟漪、病栋点滴、黎明的候鸟、结尾花瓣、贯穿尾声的丝线。
 
-## 六、版权与声明
+## 六、C 版（Remotion Player × Three.js）特有的处理
 
-- 音乐、歌词、GUMI 角色形象的权利均属于 **ユリイ・カノン / Internet Co., Ltd. / 各权利方**。本仓库是**非商业的粉丝向视觉演绎**，不含音频文件，也不用于任何商业用途。
+这一版是**独立的实时 3D 网页版**，不是 A/B 的影片导出，也不是播放 MP4。
+
+- **9 张新的本地 AI 原画**：Qwen-Image-2.1 生成，统一 GUMI 角色、雨夜青蓝与绯红配色，分辨率 1024×576。
+- **真正的 2.5D 景深**：每张原画是 `THREE.PlaneGeometry` 的纹理，由 `PerspectiveCamera` 做物理推拉、摇移、广角与微距；不是 CSS `transform`。
+- **11 个分镜 / 50 句歌词**：按人声分离 + 公开歌词时间轴校准；148 BPM 的脉冲与切换；浏览器内逐字入场。
+- **程序化 3D 母题**：心电光带、雨面波纹、四十具棱锥视线、二十面体牢笼、齿轮/提线木偶、星盘时钟、心跳冲击环、几何雨伞、体素剥离、铁轨/输电塔/摩天轮/线框花、双平面撕裂、太阳光球、心形晶壳、跨海红线与光羽。
+- **自定义 GLSL**：背景调色与模糊、全息扫描、水面反射、粒子、体积光锥。
+- **交互**：封面播放、11 章节跳转、当前镜头与时间码、`?t=181` 秒数深链、全屏/音量/循环。
+- **资源路径自适应**：页面自动根据所在目录计算 `/assets`，所以能在 `.../remotion-player-pv/` 子路径下运行。
+- **音频**：C 版包含原曲音轨，仅作非商业同人演示。若权利方要求，会立即移除。
+
+## 七、版权与声明
+
+- 音乐、歌词、GUMI 角色形象的权利均属于 **ユリイ・カノン / Internet Co., Ltd. / 各权利方**。本仓库是**非商业的粉丝向视觉演绎**；A/B 版不含音频，C 版为带原曲音轨的实时演示，不用于任何商业用途。
 - 仓库中的插画由本地 AI 模型生成，风格致敬原曲气质，不代表官方视觉。
 - 如果权利方希望下架，请联系我，会立即删除。
 
-## 七、工具与致谢
+## 八、工具与致谢
 
-GSAP · PixiJS · Remotion · React · TypeScript · Qwen-Image-2.1（本地推理）· Demucs · ffmpeg · Chrome headless · 字体：Shippori Mincho / Noto Serif SC / Zen Kaku Gothic New / Cormorant Garamond（Google Fonts，按用到的字形做了子集化）
+GSAP · PixiJS · Remotion · `@remotion/player` · Three.js · GLSL · React · TypeScript · Qwen-Image-2.1（本地推理）· Demucs · Whisper · ffmpeg · Chrome headless · 字体：Shippori Mincho / Noto Serif SC / Zen Kaku Gothic New / Cormorant Garamond（Google Fonts，按用到的字形做了子集化）
 
 感谢 **ユリイ・カノン** 写出这首歌。

@@ -14,7 +14,7 @@
   h1 small{display:block;font-size:.5em;font-weight:300;color:#a9c0e4;letter-spacing:.22em;margin-top:14px}
   .bar{width:132px;height:6px;background:var(--crimson);border-radius:3px;box-shadow:0 0 26px rgba(255,43,70,.7)}
   .covers{display:flex;gap:26px;flex-wrap:wrap;justify-content:center}
-  .covers img{width:min(560px,44vw);min-width:290px;border-radius:14px;border:1px solid rgba(220,232,255,.16);
+  .covers img{width:min(380px,29vw);min-width:260px;border-radius:14px;border:1px solid rgba(220,232,255,.16);
        box-shadow:0 20px 60px rgba(0,0,0,.6)}
   .cards{display:flex;gap:26px;flex-wrap:wrap;justify-content:center;width:100%;max-width:1200px}
   a.card{flex:1 1 380px;max-width:560px;text-decoration:none;color:inherit;padding:26px 28px;border-radius:16px;
@@ -34,6 +34,7 @@
   <div class="covers">
     <img src="covers/cover_gsap.jpg" alt="GSAP + PixiJS cover">
     <img src="covers/cover_remotion.jpg" alt="Remotion + React cover">
+    <img src="covers/cover_player.jpg" alt="Remotion Player + Three.js cover">
   </div>
   <div class="cards">
     <a class="card" href="gsap-pv/index.html">
@@ -46,10 +47,15 @@
       <p>全部动效改用物理弹簧，镜头带 150° 快门角动态模糊，副歌文字拖尾，线稿层与背景共用同一套相机解算。
          自动播放并循环。</p>
     </a>
+    <a class="card" href="remotion-player-pv/index.html">
+      <b>C 版 · Remotion Player × Three.js</b><div class="tag">REALTIME · 3D · GLSL · AUDIO</div>
+      <p>完整实时音频版：原画贴入真实 3D 景深空间，程序化线框、心电光带、星盘、雨伞与跨海红线在
+         11 个分镜中生长；逐章跳转，浏览器内实时渲染。</p>
+    </a>
   </div>
   <footer>
     原曲：ユリイ・カノン「だれかの心臓になれたなら」feat. GUMI<br>
-    本页为粉丝向非商业视觉演绎，不含音频；音乐与角色的权利归原作者与权利方所有。<br>
+    本页为粉丝向非商业视觉演绎。A/B 版不含音频；C 版包含原曲音轨，仅作实时演示。音乐与角色的权利归原作者与权利方所有。<br>
     <a href="https://github.com/pronoobe/dareka-no-shinzou-web-pv">GitHub 仓库</a>
   </footer>
 </body>
